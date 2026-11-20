@@ -1,0 +1,3248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nokhpa TEAM</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<style>
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+:root{
+  --gold:#d4af37;
+  --gold-light:#f5d76e;
+  --gold-dark:#9c7618;
+  --gold-soft:rgba(212,175,55,.18);
+
+  --bg:#070707;
+  --bg2:#101010;
+  --card:#111111;
+
+  --text:#f7f2df;
+  --text2:#c9c0a8;
+  --text3:#91876e;
+
+  --border:rgba(212,175,55,.22);
+
+  --success:#20c77a;
+  --danger:#ef4444;
+
+  --radius:18px;
+}
+
+*{
+  scrollbar-width:thin;
+  scrollbar-color:#d4af37 #050505;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:'Outfit',sans-serif;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(212,175,55,.08),transparent 35%),
+    #070707;
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 10% 20%,rgba(212,175,55,.035),transparent 25%),
+    radial-gradient(circle at 90% 80%,rgba(212,175,55,.035),transparent 25%);
+}
+
+button,
+input{
+  font-family:inherit;
+}
+
+#prog-bar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:0%;
+  height:4px;
+  z-index:9999;
+  background:linear-gradient(
+    90deg,
+    #8f6b16,
+    #d4af37,
+    #fff1a8,
+    #d4af37,
+    #8f6b16
+  );
+  box-shadow:0 0 14px rgba(212,175,55,.8);
+  transition:width .3s ease;
+}
+
+/* NAV */
+
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:64px;
+  z-index:1000;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:0 28px;
+
+  background:rgba(5,5,5,.95);
+  backdrop-filter:blur(20px);
+
+  border-bottom:1px solid rgba(212,175,55,.35);
+
+  box-shadow:
+    0 4px 25px rgba(0,0,0,.5),
+    0 1px 0 rgba(212,175,55,.08);
+}
+
+.nav-back{
+  display:flex;
+  align-items:center;
+  gap:7px;
+
+  color:#e9d88d;
+  text-decoration:none;
+
+  font-size:13px;
+  font-weight:700;
+
+  padding:8px 13px;
+
+  border-radius:9px;
+  border:1px solid rgba(212,175,55,.35);
+
+  background:#0d0d0d;
+
+  transition:.3s;
+}
+
+.nav-back:hover{
+  color:#fff;
+  border-color:#d4af37;
+  transform:translateX(3px);
+  box-shadow:0 0 18px rgba(212,175,55,.18);
+}
+
+.nav-brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+
+  color:#f5d76e;
+  font-size:15px;
+  font-weight:900;
+}
+
+.nav-logo-icon{
+  width:35px;
+  height:35px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:9px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #a67c00
+    );
+
+  color:#080808;
+  font-size:11px;
+  font-weight:900;
+
+  border:1px solid rgba(255,225,120,.8);
+
+  box-shadow:
+    0 0 18px rgba(212,175,55,.28),
+    inset 0 1px 0 rgba(255,255,255,.4);
+}
+
+.nav-right{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.theme-btn{
+  width:38px;
+  height:38px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:50%;
+
+  background:#0d0d0d;
+  color:#f5d76e;
+
+  border:1px solid rgba(212,175,55,.35);
+
+  cursor:pointer;
+
+  font-size:15px;
+
+  transition:.3s;
+}
+
+.theme-btn:hover{
+  border-color:#d4af37;
+  transform:rotate(20deg);
+  box-shadow:0 0 18px rgba(212,175,55,.2);
+}
+
+/* HERO */
+
+.hero-band{
+  position:relative;
+  overflow:hidden;
+
+  margin-top:64px;
+
+  padding:44px 24px 38px;
+
+  text-align:center;
+
+  background:
+    radial-gradient(
+      ellipse 650px 260px at 50% 115%,
+      rgba(212,175,55,.22),
+      transparent 65%
+    ),
+    linear-gradient(
+      135deg,
+      #030303 0%,
+      #0b0b0b 42%,
+      #151208 65%,
+      #000 100%
+    );
+
+  border-bottom:1px solid rgba(212,175,55,.55);
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.55),
+    inset 0 -1px 0 rgba(212,175,55,.2);
+}
+
+.hero-band::before{
+  content:"";
+  position:absolute;
+  inset:0;
+
+  background:
+    radial-gradient(
+      ellipse 700px 220px at 50% 100%,
+      rgba(245,215,110,.15),
+      transparent 70%
+    );
+}
+
+.hero-band::after{
+  content:"";
+  position:absolute;
+
+  left:-10%;
+  right:-10%;
+  bottom:-85px;
+
+  height:150px;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(212,175,55,.14),
+      transparent 65%
+    );
+
+  pointer-events:none;
+}
+
+.hero-band-icon{
+  position:relative;
+  z-index:1;
+
+  width:70px;
+  height:70px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  margin:0 auto 15px;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #a67c00
+    );
+
+  color:#090909;
+
+  border:1px solid rgba(255,230,130,.85);
+
+  font-size:30px;
+
+  box-shadow:
+    0 0 25px rgba(212,175,55,.25),
+    inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+.hero-band h1{
+  position:relative;
+  z-index:1;
+
+  color:#fff7d0;
+
+  font-size:clamp(22px,4vw,31px);
+  font-weight:900;
+
+  margin-bottom:7px;
+
+  text-shadow:
+    0 2px 15px rgba(212,175,55,.25);
+}
+
+.hero-band p{
+  position:relative;
+  z-index:1;
+
+  color:#cfc39b;
+
+  font-size:13px;
+}
+
+.hero-band-meta{
+  position:relative;
+  z-index:1;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  gap:14px;
+
+  margin-top:20px;
+
+  flex-wrap:wrap;
+}
+
+.meta-pill{
+  display:flex;
+  align-items:center;
+  gap:6px;
+
+  padding:7px 16px;
+
+  border-radius:50px;
+
+  background:rgba(212,175,55,.08);
+
+  border:1px solid rgba(212,175,55,.38);
+
+  color:#f5d76e;
+
+  font-size:12px;
+  font-weight:700;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.05),
+    0 4px 15px rgba(0,0,0,.25);
+}
+
+/* MAIN */
+
+.shell{
+  width:100%;
+  max-width:760px;
+
+  margin:0 auto;
+
+  padding:28px 20px 80px;
+}
+
+/* STATS */
+
+.stats-row{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:12px;
+
+  margin-bottom:16px;
+}
+
+.stat-box{
+  padding:13px 10px;
+
+  text-align:center;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,.035),
+      rgba(212,175,55,.025)
+    );
+
+  border:1px solid rgba(212,175,55,.22);
+
+  border-radius:var(--radius);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.03);
+
+  transition:.3s;
+}
+
+.stat-box:hover{
+  transform:translateY(-3px);
+
+  border-color:rgba(212,175,55,.5);
+
+  box-shadow:
+    0 12px 30px rgba(0,0,0,.45),
+    0 0 20px rgba(212,175,55,.08);
+}
+
+.stat-box .val{
+  font-size:21px;
+  font-weight:900;
+}
+
+.stat-box .lbl{
+  margin-top:2px;
+
+  color:var(--text3);
+
+  font-size:11px;
+}
+
+.stat-correct{
+  color:var(--success);
+}
+
+.stat-wrong{
+  color:var(--danger);
+}
+
+.stat-remain{
+  color:#d4af37;
+}
+
+/* PROGRESS */
+
+.prog-strip{
+  display:flex;
+  align-items:center;
+
+  gap:14px;
+
+  padding:14px 16px;
+
+  margin-bottom:16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #101010,
+      #0b0b0b
+    );
+
+  border:1px solid rgba(212,175,55,.25);
+
+  border-radius:var(--radius);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,.35),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.prog-label{
+  color:#d8cfb5;
+
+  font-size:13px;
+  font-weight:700;
+
+  white-space:nowrap;
+}
+
+.prog-track{
+  flex:1;
+
+  height:8px;
+
+  background:#050505;
+
+  border:1px solid rgba(212,175,55,.12);
+
+  border-radius:8px;
+
+  overflow:hidden;
+}
+
+.prog-fill{
+  width:0%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      #8f6b16,
+      #d4af37,
+      #f5d76e,
+      #d4af37
+    );
+
+  box-shadow:0 0 12px rgba(212,175,55,.35);
+
+  border-radius:8px;
+
+  transition:width .4s;
+}
+
+.timer-badge{
+  min-width:70px;
+  height:36px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:5px;
+
+  padding:0 12px;
+
+  flex-shrink:0;
+
+  border-radius:18px;
+
+  background:#0a0a0a;
+
+  color:#f5d76e;
+
+  border:1px solid rgba(212,175,55,.45);
+
+  font-size:14px;
+  font-weight:900;
+}
+
+.timer-badge.warn{
+  color:#f5d76e;
+  border-color:rgba(212,175,55,.7);
+}
+
+.timer-badge.danger{
+  color:#ef4444;
+  border-color:rgba(239,68,68,.5);
+
+  animation:pulse .8s infinite;
+}
+
+@keyframes pulse{
+  0%,100%{opacity:1}
+  50%{opacity:.55}
+}
+
+/* QUESTION */
+
+.q-card{
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #0b0b0b
+    );
+
+  border:1px solid rgba(212,175,55,.28);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 15px 45px rgba(0,0,0,.5),
+    0 0 25px rgba(212,175,55,.035),
+    inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+.q-header{
+  display:flex;
+  align-items:center;
+
+  padding:7px 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #8f6b16,
+      #d4af37,
+      #b58b22
+    );
+
+  box-shadow:
+    0 4px 20px rgba(212,175,55,.15);
+}
+
+.q-num{
+  padding:4px 11px;
+
+  border-radius:8px;
+
+  background:rgba(0,0,0,.25);
+
+  border:1px solid rgba(255,255,255,.18);
+
+  color:#fff9d9;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.q-text{
+  padding:22px 18px 15px;
+
+  color:#f5f1e5;
+
+  font-size:15px;
+  font-weight:700;
+
+  line-height:1.7;
+
+  border-bottom:1px solid rgba(212,175,55,.15);
+
+  text-align:left;
+  direction:ltr;
+}
+
+.options{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  padding:18px;
+}
+
+.opt{
+  display:flex;
+  align-items:center;
+
+  gap:12px;
+
+  padding:14px 16px;
+
+  min-height:55px;
+
+  border-radius:12px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #151515,
+      #0d0d0d
+    );
+
+  border:1.5px solid rgba(212,175,55,.18);
+
+  color:#eee8d8;
+
+  font-size:14px;
+  font-weight:600;
+
+  cursor:pointer;
+
+  direction:ltr;
+  text-align:left;
+
+  user-select:none;
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,.25);
+
+  transition:.3s;
+}
+
+.opt:hover:not(.disabled){
+  border-color:#d4af37;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(212,175,55,.12),
+      rgba(212,175,55,.035)
+    );
+
+  transform:translateX(5px);
+
+  box-shadow:
+    0 5px 20px rgba(212,175,55,.1),
+    inset 0 0 15px rgba(212,175,55,.03);
+}
+
+.opt-letter{
+  width:29px;
+  height:29px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  flex-shrink:0;
+
+  border-radius:8px;
+
+  background:#0a0a0a;
+
+  border:1px solid rgba(212,175,55,.35);
+
+  color:#d4af37;
+
+  font-size:12px;
+  font-weight:900;
+}
+
+.opt.correct{
+  border-color:#20c77a;
+  background:rgba(32,199,122,.07);
+}
+
+.opt.correct .opt-letter{
+  background:#20c77a;
+  border-color:#20c77a;
+  color:#fff;
+}
+
+.opt.wrong{
+  border-color:#ef4444;
+  background:rgba(239,68,68,.07);
+}
+
+.opt.wrong .opt-letter{
+  background:#ef4444;
+  border-color:#ef4444;
+  color:#fff;
+}
+
+.opt.disabled{
+  pointer-events:none;
+}
+
+/* FEEDBACK */
+
+.feedback-bar{
+  margin:0 18px 14px;
+
+  padding:12px 16px;
+
+  display:flex;
+  align-items:center;
+
+  gap:10px;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:800;
+
+  animation:popIn .4s cubic-bezier(.34,1.56,.64,1);
+}
+
+.feedback-bar.ok{
+  background:rgba(32,199,122,.08);
+  color:#20c77a;
+  border:1px solid rgba(32,199,122,.25);
+}
+
+.feedback-bar.no{
+  background:rgba(239,68,68,.08);
+  color:#ef4444;
+  border:1px solid rgba(239,68,68,.22);
+}
+
+.feedback-icon{
+  font-size:20px;
+}
+
+@keyframes popIn{
+  from{
+    transform:scale(.8);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
+
+/* EXPLANATION */
+
+.explanation{
+  margin:0 18px 14px;
+
+  padding:12px 14px;
+
+  background:rgba(212,175,55,.045);
+
+  border-radius:10px;
+
+  border-right:3px solid #d4af37;
+
+  color:#d8cfb5;
+
+  font-size:13px;
+
+  line-height:1.6;
+}
+
+/* BUTTONS */
+
+.nav-btns{
+  display:flex;
+  gap:10px;
+
+  padding:4px 18px 18px;
+}
+
+.btn{
+  flex:1;
+
+  padding:13px;
+
+  border:none;
+
+  border-radius:12px;
+
+  font-size:14px;
+  font-weight:900;
+
+  cursor:pointer;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  gap:7px;
+
+  transition:.3s;
+}
+
+.btn-next,
+.btn-retry{
+  background:
+    linear-gradient(
+      135deg,
+      #9c7618,
+      #d4af37,
+      #f5d76e
+    );
+
+  color:#080808;
+
+  box-shadow:
+    0 6px 20px rgba(212,175,55,.2);
+}
+
+.btn-next:hover,
+.btn-retry:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 10px 28px rgba(212,175,55,.3);
+}
+
+.btn-skip,
+.btn-home{
+  background:#111;
+
+  color:#cfc39b;
+
+  border:1px solid rgba(212,175,55,.22);
+}
+
+.btn-skip{
+  flex:0 0 auto;
+  padding:13px 18px;
+}
+
+.btn-skip:hover,
+.btn-home:hover{
+  border-color:#d4af37;
+  color:#f5d76e;
+}
+
+/* RESULTS */
+
+.result-hero{
+  text-align:center;
+
+  padding:30px 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #121212,
+      #090909
+    );
+
+  border:1px solid rgba(212,175,55,.3);
+
+  border-radius:20px;
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.55),
+    0 0 30px rgba(212,175,55,.04);
+}
+
+.score-ring{
+  width:120px;
+  height:120px;
+
+  position:relative;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+
+  margin:0 auto 18px;
+}
+
+.score-ring svg{
+  position:absolute;
+
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  transform:rotate(-90deg);
+}
+
+.score-ring circle{
+  fill:none;
+
+  stroke-width:5;
+
+  stroke-linecap:round;
+}
+
+.ring-bg{
+  stroke:#242019;
+}
+
+.ring-fill{
+  stroke:#d4af37;
+
+  transition:stroke-dashoffset 1s ease;
+}
+
+.score-num{
+  position:relative;
+
+  font-size:28px;
+  font-weight:900;
+}
+
+.score-pct{
+  position:relative;
+
+  color:var(--text3);
+
+  font-size:12px;
+}
+
+.result-grade{
+  margin-bottom:7px;
+
+  color:#f5d76e;
+
+  font-size:23px;
+  font-weight:900;
+}
+
+.result-sub{
+  color:var(--text2);
+
+  font-size:14px;
+}
+
+.result-stats{
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+.rs{
+  padding:12px 8px;
+
+  background:#101010;
+
+  border:1px solid rgba(212,175,55,.15);
+
+  border-radius:10px;
+}
+
+.rs .n{
+  font-size:20px;
+  font-weight:900;
+}
+
+.rs .l{
+  color:var(--text3);
+  font-size:11px;
+}
+
+/* REPORT */
+
+.report-title{
+  margin:28px 0 12px;
+
+  color:var(--text2);
+
+  font-size:14px;
+  font-weight:800;
+}
+
+.report-item{
+  margin-bottom:10px;
+
+  padding:16px;
+
+  background:var(--card);
+
+  border:1px solid var(--border);
+
+  border-right:4px solid var(--border);
+
+  border-radius:14px;
+}
+
+.report-item.ok{
+  border-right-color:var(--success);
+}
+
+.report-item.no{
+  border-right-color:var(--danger);
+}
+
+.ri-q{
+  margin-bottom:8px;
+
+  font-size:13px;
+  font-weight:700;
+
+  line-height:1.6;
+
+  direction:ltr;
+  text-align:left;
+}
+
+.ri-row{
+  display:flex;
+  align-items:flex-start;
+
+  gap:8px;
+
+  margin-top:6px;
+
+  color:var(--text2);
+
+  font-size:12px;
+
+  line-height:1.5;
+
+  direction:ltr;
+  text-align:left;
+}
+
+.ri-badge{
+  padding:2px 8px;
+
+  flex-shrink:0;
+
+  border-radius:6px;
+
+  font-size:11px;
+  font-weight:800;
+}
+
+.ri-yours{
+  background:rgba(239,68,68,.1);
+  color:#ef4444;
+}
+
+.ri-right{
+  background:rgba(32,199,122,.1);
+  color:#20c77a;
+}
+
+.result-actions{
+  display:flex;
+  flex-direction:column;
+
+  gap:10px;
+
+  margin-top:20px;
+}
+
+/* INPUTS */
+
+.student-box{
+  text-align:right;
+
+  margin-bottom:14px;
+}
+
+.student-label{
+  display:block;
+
+  margin-bottom:6px;
+
+  color:var(--text2);
+
+  font-size:13px;
+  font-weight:700;
+}
+
+.student-input{
+  width:100%;
+
+  padding:13px 14px;
+
+  background:#0c0c0c;
+
+  color:var(--text);
+
+  border:1px solid rgba(212,175,55,.25);
+
+  border-radius:10px;
+
+  outline:none;
+
+  font-size:14px;
+
+  transition:.3s;
+}
+
+.student-input:focus{
+  border-color:#d4af37;
+
+  box-shadow:0 0 15px rgba(212,175,55,.1);
+}
+
+.student-error{
+  display:none;
+
+  margin-bottom:12px;
+
+  padding:10px;
+
+  color:#ef4444;
+
+  background:rgba(239,68,68,.08);
+
+  border:1px solid rgba(239,68,68,.2);
+
+  border-radius:10px;
+
+  font-size:13px;
+  font-weight:700;
+}
+
+/* FOOTER */
+
+footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  gap:10px;
+
+  flex-wrap:wrap;
+
+  padding:22px 24px;
+
+  background:#050505;
+
+  border-top:1px solid rgba(212,175,55,.28);
+
+  box-shadow:
+    0 -5px 25px rgba(0,0,0,.35);
+}
+
+.footer-brand{
+  color:#d8cfb5;
+
+  font-size:14px;
+  font-weight:700;
+}
+
+.footer-brand span{
+  color:#d4af37;
+}
+
+.footer-tg{
+  color:#d4af37;
+
+  font-size:12px;
+  font-weight:600;
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+  nav{
+    padding:0 14px;
+  }
+
+  .nav-brand span{
+    display:none;
+  }
+
+  .hero-band{
+    padding:36px 14px 32px;
+  }
+
+  .hero-band h1{
+    font-size:24px;
+  }
+
+  .meta-pill{
+    padding:6px 12px;
+  }
+
+  .shell{
+    padding:22px 12px 60px;
+  }
+
+  .stats-row{
+    gap:7px;
+  }
+
+  .stat-box{
+    padding:11px 6px;
+  }
+
+  .prog-strip{
+    gap:8px;
+  }
+
+  .prog-label{
+    font-size:11px;
+  }
+
+  .timer-badge{
+    min-width:65px;
+    padding:0 8px;
+    font-size:12px;
+  }
+
+  .q-card{
+    border-radius:16px;
+  }
+
+  .q-text{
+    font-size:14px;
+  }
+
+  .opt{
+    font-size:13px;
+    padding:13px;
+  }
+
+  footer{
+    padding:20px 14px;
+  }
+}
+/* ===== Luxury WhatsApp Contact ===== */
+
+.contact-section {
+  margin: 35px auto 10px;
+  max-width: 650px;
+  text-align: center;
+}
+
+.contact-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+
+.contact-title h3 {
+  margin: 0;
+  color: var(--gold);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.contact-line {
+  width: 55px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.contact-line:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.contact-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.contact-btn {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 15px 18px;
+  border: 1px solid rgba(212,175,55,.25);
+  border-radius: 16px;
+  background: linear-gradient(
+    145deg,
+    rgba(212,175,55,.10),
+    rgba(255,255,255,.025)
+  );
+  color: var(--text);
+  text-decoration: none;
+  text-align: right;
+  transition: .3s ease;
+  box-shadow: 0 8px 25px rgba(0,0,0,.20);
+}
+
+.contact-btn:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 12px 30px rgba(212,175,55,.15);
+}
+
+.contact-btn i {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  font-size: 23px;
+  color: var(--gold);
+  border: 1px solid rgba(212,175,55,.25);
+  background: rgba(212,175,55,.08);
+}
+
+.contact-btn:hover i {
+  background: var(--gold);
+  color: #080808;
+}
+
+.contact-btn div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contact-btn strong {
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.contact-btn small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+@media (max-width: 600px) {
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="prog-bar"></div>
+
+<nav>
+
+  <a href="../index.html" class="nav-back">
+    <i class="fa-solid fa-arrow-right"></i>
+    رجوع
+  </a>
+
+  <div class="nav-brand">
+    <div class="nav-logo-icon">NT</div>
+    <span>Nokhpa TEAM</span>
+  </div>
+
+  <div class="nav-right">
+    <button
+      class="theme-btn"
+      id="themeBtn"
+      type="button"
+      aria-label="Change theme"
+    >
+      ☀️
+    </button>
+  </div>
+
+</nav>
+
+<section class="hero-band">
+
+  <div class="hero-band-icon">
+    👼🏻
+  </div>
+
+  <h1>Pediatric nursing</h1>
+
+  <p>Comprehensive Pediatric nursing Preschool </p>
+
+  <div class="hero-band-meta">
+
+    <div class="meta-pill">
+      📚
+      <span id="totalBadge">0 سؤال</span>
+    </div>
+
+    <div class="meta-pill">
+      ⏱️ 200 Min
+    </div>
+
+    <div class="meta-pill">
+      🔀 Shuffled
+    </div>
+
+  </div>
+
+</section>
+
+<main class="shell">
+
+  <div class="stats-row">
+
+    <div class="stat-box">
+      <div class="val stat-correct" id="sCorrect">0</div>
+      <div class="lbl">صحيح</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="val stat-wrong" id="sWrong">0</div>
+      <div class="lbl">خطأ</div>
+    </div>
+
+    <div class="stat-box">
+      <div class="val stat-remain" id="sRemain">100%</div>
+      <div class="lbl">متبقي</div>
+    </div>
+
+  </div>
+
+  <div class="prog-strip">
+
+    <div class="prog-label" id="progLabel">
+      سؤال 1
+    </div>
+
+    <div class="prog-track">
+      <div class="prog-fill" id="progFill"></div>
+    </div>
+
+    <div class="timer-badge" id="timerBadge">
+      ⏱️
+      <span id="timerTxt">60:00</span>
+    </div>
+
+  </div>
+
+  <div id="app"></div>
+
+</main>
+
+<footer>
+
+  <div class="footer-brand">
+    Nokhpa <span>TEAM</span>
+  </div>
+
+  <div class="footer-tg">
+    ✦ Nursing Process
+  </div>
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   QUESTIONS
+===================================================== */
+
+const QUESTIONS = [
+
+  {
+    t: "A preschool child gains an average of 2.3 kg annually. Which weight is expected at 6 years according to the lecture?",
+    o: ["12 kg", "15 kg", "18 kg", "23 kg"],
+    a: 2
+  },
+  {
+    t: "Which combination correctly describes the expected physical growth of a preschool child?",
+    o: ["Weight gain 6.25–7.5 kg/year and height gain 2.3 cm/year", "Weight gain 2.3 kg/year and height gain 6.25–7.5 cm/year", "Weight gain 2.3 kg/year and height gain 10 cm/year", "Weight gain 7.5 kg/year and height gain 6.25 kg/year"],
+    a: 1
+  },
+  {
+    t: "A student assesses a 6-year-old child whose height is 101 cm. According to the lecture, this measurement represents:",
+    o: ["Double the weight at one year", "Double the birth length", "The average height at 3 years", "A height gain of 2.3 cm/year"],
+    a: 1
+  },
+  {
+    t: "Which vital sign combination is correctly matched with the preschool child?",
+    o: ["Pulse 90–110/min, respiration 20/min, BP 85/60 mmHg", "Pulse 20/min, respiration 90–110/min, BP 85/60 mmHg", "Pulse 85–100/min, respiration 30/min, BP 90/70 mmHg", "Pulse 110–130/min, respiration 20/min, BP 100/60 mmHg"],
+    a: 0
+  },
+  {
+    t: "A preschool child has a temperature of 36.8°C. Which interpretation is most appropriate according to the lecture?",
+    o: ["Below the expected range", "Within the expected range", "Above the expected range", "The expected temperature is 38–39°C"],
+    a: 1
+  },
+  {
+    t: "Which statement best describes the general physical growth pattern during preschool years?",
+    o: ["Physical growth accelerates continuously", "Physical growth slows and stabilizes", "Physical growth stops completely", "Height decreases while weight increases"],
+    a: 1
+  },
+  {
+    t: "By the end of the preschool period, a healthy child is most likely to appear:",
+    o: ["Short and heavily built", "Thin and tall", "Fat and posturally curved", "Muscular with poor coordination"],
+    a: 1
+  },
+  {
+    t: "The ability of preschool children to explore their physical environment is mainly supported by:",
+    o: ["Decreased muscular coordination", "Increased muscular coordination", "Reduced physical activity", "Delayed motor development"],
+    a: 1
+  },
+  {
+    t: "Which activity is considered a fine motor skill?",
+    o: ["Hopping", "Climbing", "Drawing", "Pedaling a bicycle"],
+    a: 2
+  },
+  {
+    t: "A child uses his fingers to manipulate small objects and practices dressing independently. These activities mainly demonstrate:",
+    o: ["Gross motor development", "Fine motor development", "Physiological development", "Respiratory development"],
+    a: 1
+  },
+  {
+    t: "Why are fine motor skills important before school entry?",
+    o: ["They prevent separation anxiety", "They provide readiness for learning and independence", "They develop bladder control", "They improve only large muscle coordination"],
+    a: 1
+  },
+  {
+    t: "Which of the following is NOT classified as a gross motor skill?",
+    o: ["Skipping", "Catching a ball", "Copying a square", "Jumping over low obstacles"],
+    a: 2
+  },
+  {
+    t: "A preschool child climbs stairs by placing one foot on each step alternately. This demonstrates:",
+    o: ["Fine motor coordination", "Gross motor coordination", "Cognitive development only", "Language development"],
+    a: 1
+  },
+  {
+    t: "Which child demonstrates a skill specifically mentioned for a 3-year-old?",
+    o: ["Balances on one foot for 8 seconds", "Copies a square", "Builds a tower of 9–10 blocks", "Dresses without assistance"],
+    a: 2
+  },
+  {
+    t: "A 3-year-old child can ride a tricycle, go upstairs, and stand on one foot for a few seconds. Which additional skill is expected at this age?",
+    o: ["Can wash hands", "Can balance on one foot for 8 seconds", "Can explain the meaning of his picture", "Can wash himself without wetting his clothes"],
+    a: 0
+  },
+  {
+    t: "Which combination is most appropriate for a 4-year-old child?",
+    o: ["Builds a tower of 9–10 blocks and begins using scissors", "Jumps well, goes up and down stairs, and copies a square", "Dresses without assistance and balances for 8 seconds", "Explains pictures and washes himself without wetting clothes"],
+    a: 1
+  },
+  {
+    t: "A child can brush his teeth, lace his shoes, and copy a square. According to the lecture, this child is most likely:",
+    o: ["2 years old", "3 years old", "4 years old", "5 years old"],
+    a: 2
+  },
+  {
+    t: "Which skill is specifically associated with a 5-year-old rather than a 3-year-old?",
+    o: ["Going upstairs", "Feeding himself well", "Using scissors well", "Building a tower of 9–10 blocks"],
+    a: 2
+  },
+  {
+    t: "A 5-year-old child dresses independently, washes himself without wetting his clothes, and balances on one foot for approximately:",
+    o: ["2 seconds", "5 seconds", "8 seconds", "10 seconds"],
+    a: 2
+  },
+  {
+    t: "Which sequence correctly represents the development of scissors use?",
+    o: ["3 years: uses scissors well; 4 years: begins using scissors", "3 years: begins using scissors; 5 years: uses scissors well", "4 years: uses scissors well; 5 years: begins using scissors", "3 years: cannot use scissors; 5 years: begins using scissors"],
+    a: 1
+  },
+  {
+    t: "According to Piaget, the preoperational phase covers which age range?",
+    o: ["Birth to 2 years", "2–7 years", "4–8 years", "7–11 years"],
+    a: 1
+  },
+  {
+    t: "The preoperational phase is divided into:",
+    o: ["Sensorimotor and concrete operational stages", "Pre-conceptual and intuitive thought stages", "Initiative and autonomy stages", "Oral and anal stages"],
+    a: 1
+  },
+  {
+    t: "A 3-year-old child explains everything according to his own point of view and has difficulty understanding another person's perspective. This behavior mainly reflects:",
+    o: ["Social awareness", "Egocentric thinking", "Strong identification", "Intuitive reasoning only"],
+    a: 1
+  },
+  {
+    t: "Which age range corresponds to the pre-conceptual phase?",
+    o: ["1–2 years", "2–4 years", "4–7 years", "7–11 years"],
+    a: 1
+  },
+  {
+    t: "The intuitive thought phase occurs during:",
+    o: ["2–4 years", "3–5 years", "4–7 years", "7–12 years"],
+    a: 2
+  },
+  {
+    t: "One important transition during the preoperational phases is the movement from:",
+    o: ["Social awareness to total egocentrism", "Total egocentric thought toward social awareness", "Intuitive thought toward sensorimotor activity", "Independence toward complete dependence"],
+    a: 1
+  },
+  {
+    t: "Although preschool children develop social awareness, which characteristic remains evident?",
+    o: ["Complete absence of egocentrism", "Egocentric thinking", "Complete logical reasoning", "Lack of language development"],
+    a: 1
+  },
+  {
+    t: "A child uses the words \"right\" and \"left\" but cannot consistently understand their meanings. This is best explained by:",
+    o: ["Language development always precedes understanding", "Preschoolers may use concepts without fully comprehending them", "The child has completed cognitive development", "The child has no ability to communicate"],
+    a: 1
+  },
+  {
+    t: "A preschooler explains a concept exactly as an adult described it but cannot apply it in a different situation. This demonstrates:",
+    o: ["Complete conceptual understanding", "Limited understanding of learned concepts", "Advanced logical thinking", "Absence of language development"],
+    a: 1
+  },
+  {
+    t: "Which statement about preschool language is MOST accurate?",
+    o: ["Language is used only for expressing physical needs", "Language becomes more sophisticated and complex", "Vocabulary remains unchanged", "Communication becomes less important during this period"],
+    a: 1
+  },
+  {
+    t: "A child's vocabulary increases from approximately 300 words at age 2 to more than how many words at the end of age 5?",
+    o: ["900", "1,200", "1,500", "2,100"],
+    a: 3
+  },
+  {
+    t: "Language development during preschool years is particularly important because it:",
+    o: ["Predicts school readiness", "Prevents all emotional conflicts", "Guarantees complete independence", "Eliminates egocentric thinking"],
+    a: 0
+  },
+  {
+    t: "A 3-year-old child forms sentences containing approximately:",
+    o: ["One word", "Two words", "Three to four words", "Six to eight words"],
+    a: 2
+  },
+  {
+    t: "Which language behavior is expected in a 3-year-old?",
+    o: ["Uses only single words", "Asks many questions and uses the past tense", "Cannot name familiar objects", "Uses only gestures for communication"],
+    a: 1
+  },
+  {
+    t: "A 3-year-old correctly uses plural forms and pronouns. Which additional ability is expected according to the lecture?",
+    o: ["Uses the past tense of verbs", "Produces sentences of ten words", "Follows several complex requests simultaneously", "Understands all concepts of time"],
+    a: 0
+  },
+  {
+    t: "A child names animals, body parts, relatives, and friends. This behavior is most consistent with:",
+    o: ["Preschool speech development", "Psychosexual conflict", "Gross motor development", "Enuresis"],
+    a: 0
+  },
+  {
+    t: "Between 4 and 5 years, children generally use:",
+    o: ["One- or two-word sentences", "Two- or three-word sentences only", "Longer sentences of four or five and more parts of speech", "Only nonverbal communication"],
+    a: 2
+  },
+  {
+    t: "A 4-year-old child can follow simple directional commands but can carry out only:",
+    o: ["One request at a time", "Two requests simultaneously", "Three requests simultaneously", "Unlimited requests simultaneously"],
+    a: 0
+  },
+  {
+    t: "Which statement best distinguishes the speech of a 3-year-old from that of a 4–5-year-old?",
+    o: ["The 3-year-old uses longer sentences", "The 4–5-year-old uses longer and more complex sentences", "The 4–5-year-old uses only essential words", "Both ages have identical sentence development"],
+    a: 1
+  },
+  {
+    t: "Preschoolers increasingly use language to:",
+    o: ["Express frustration and anger without acting them out", "Avoid all social interaction", "Replace physical growth", "Prevent the need for parental guidance"],
+    a: 0
+  },
+  {
+    t: "According to Freud, the phallic stage extends from:",
+    o: ["Birth to 1 year", "1–3 years", "3–7 years", "7–12 years"],
+    a: 2
+  },
+  {
+    t: "During the phallic stage, the child's pleasure centers mainly on:",
+    o: ["The mouth", "The genitalia", "The hands", "The feet"],
+    a: 1
+  },
+  {
+    t: "A child demonstrates jealousy toward the same-sex parent and love toward the opposite-sex parent. Freud termed this:",
+    o: ["Initiative versus guilt", "Oedipal conflict", "Autonomy versus shame", "Intuitive thought"],
+    a: 1
+  },
+  {
+    t: "The Oedipal conflict typically resolves during:",
+    o: ["Early infancy", "Early toddlerhood", "Late preschool period", "School-age adolescence"],
+    a: 2
+  },
+  {
+    t: "The typical resolution of the Oedipal conflict involves:",
+    o: ["Rejection of both parents", "Strong identification with the same-sex parent", "Complete separation from the family", "Identification only with the opposite-sex parent"],
+    a: 1
+  },
+  {
+    t: "Preschool children may recognize sexual activity but not understand it because they are:",
+    o: ["Poor observers and good interpreters", "Keen observers but poor interpreters", "Unable to recognize differences between people", "Completely unaware of their environment"],
+    a: 1
+  },
+  {
+    t: "Before answering a child's question about sex, parents should FIRST clarify:",
+    o: ["The child's school performance", "What the child is really asking", "The child's ability to read", "The child's motor coordination"],
+    a: 1
+  },
+  {
+    t: "Which approach is most appropriate when answering preschool children's questions about sex?",
+    o: ["Provide all possible details immediately", "Avoid answering the questions", "Answer simply and honestly, providing requested information only", "Punish the child for asking"],
+    a: 2
+  },
+  {
+    t: "According to Erikson, the chief psychosocial task of the preschool period is acquiring:",
+    o: ["A sense of trust", "A sense of autonomy", "A sense of initiative", "A sense of identity"],
+    a: 2
+  },
+  {
+    t: "The psychosocial crisis occurring between ages 3 and 6 is:",
+    o: ["Trust versus mistrust", "Autonomy versus shame", "Initiative versus guilt", "Industry versus inferiority"],
+    a: 2
+  },
+  {
+    t: "A preschool child energetically explores, plays, works, and feels satisfaction from accomplishing activities. This behavior demonstrates:",
+    o: ["Initiative", "Guilt", "Dependence", "Insecurity"],
+    a: 0
+  },
+  {
+    t: "According to Erikson, conflict arises when a child:",
+    o: ["Successfully completes every activity", "Oversteps the limits of ability and inquiry", "Receives parental approval", "Develops language skills"],
+    a: 1
+  },
+  {
+    t: "Which statement correctly distinguishes autonomy from initiative in the lecture?",
+    o: ["Initiative is mastered during infancy, while autonomy occurs during preschool", "The child normally masters autonomy during toddlerhood and moves toward initiative during preschool", "Autonomy and initiative are identical stages", "Initiative occurs only after school age"],
+    a: 1
+  },
+  {
+    t: "A preschool child needs love, understanding, and opportunities to assume increasing responsibility. These needs are mainly related to:",
+    o: ["Security and independence", "Religious education only", "Sex information only", "Physical growth only"],
+    a: 0
+  },
+  {
+    t: "Which parental approach is considered more effective for guiding a preschool child?",
+    o: ["Continuous negative commands", "Suggestions rather than commands", "Punishment for every mistake", "Avoiding communication"],
+    a: 1
+  },
+  {
+    t: "When commands are necessary, they are more effective when presented in:",
+    o: ["A negative form", "A positive form", "A threatening form", "An unclear form"],
+    a: 1
+  },
+  {
+    t: "Suggestions that encourage children to be helpful should be:",
+    o: ["Ignored", "Provided and reinforced at appropriate times", "Replaced by punishment", "Given only during school age"],
+    a: 1
+  },
+  {
+    t: "Which statement about sex information is correct?",
+    o: ["Preschool children should never receive sex education", "Sex education provides specific knowledge the child wants to know", "Parents should provide information regardless of developmental level", "Children cannot learn whether they are boys or girls"],
+    a: 1
+  },
+  {
+    t: "A parent answers a child's question about sex using information appropriate to the child's developmental level. This reflects:",
+    o: ["Appropriate sex education", "Inadequate guidance", "Avoidance of communication", "Punitive discipline"],
+    a: 0
+  },
+  {
+    t: "Religious education during preschool years may include teaching the child that:",
+    o: ["Religious concepts cannot be understood at this age", "God is within our lives and loves him", "Religious education should begin only in adolescence", "Children should learn through commands only"],
+    a: 1
+  },
+  {
+    t: "A preschool child repeatedly sucks his thumb. According to the lecture, this behavior may indicate:",
+    o: ["Advanced cognitive development", "Dissatisfaction, feeling unloved, or insecurity", "Normal gross motor coordination", "Complete emotional independence"],
+    a: 1
+  },
+  {
+    t: "The most appropriate response to thumb-suckling related to insecurity is to:",
+    o: ["Punish the child", "Provide more love and security", "Isolate the child", "Restrict all play activities"],
+    a: 1
+  },
+  {
+    t: "Enuresis is defined as:",
+    o: ["Repeated voluntary passage of stool", "Repeated involuntary voiding of urine after control should be established", "Involuntary passage of stool during sleep only", "Delayed speech development"],
+    a: 1
+  },
+  {
+    t: "According to the lecture, the term enuresis alone is commonly used to indicate:",
+    o: ["Wetting during the day", "Wetting during the night only", "Uncontrolled stool passage", "Difficulty in feeding"],
+    a: 1
+  },
+  {
+    t: "A child involuntarily passes urine during sleep. This condition is specifically called:",
+    o: ["Encopresis", "Nocturnal enuresis", "Daytime enuresis", "Developmental failure"],
+    a: 1
+  },
+  {
+    t: "Which combination correctly describes expected elimination control ages?",
+    o: ["Day bladder control: 3.5–5 years; night bladder control: 2–2.5 years", "Day bladder control: 2–2.5 years; night bladder control: 3.5–5 years", "Day bladder control: 1 year; night bladder control: 1.5 years", "Day bladder control: 1.5 years; night bladder control: 2 years"],
+    a: 1
+  },
+  {
+    t: "Bowel control normally starts at approximately:",
+    o: ["6 months", "1 year", "2.5 years", "3.5 years"],
+    a: 1
+  },
+  {
+    t: "A child has enuresis due to emotional stress and insecurity. Which etiological category is most appropriate?",
+    o: ["Developmental disorder", "Psychological disturbance", "Environmental factor", "Congenital anomaly"],
+    a: 1
+  },
+  {
+    t: "Which of the following is classified as an environmental factor contributing to enuresis?",
+    o: ["Hereditary factors", "Inadequate toilet training", "Darkness or coldness", "Urinary tract infection"],
+    a: 2
+  },
+  {
+    t: "A child has repeated involuntary urine passage associated with diabetes. Which category of causes is most appropriate?",
+    o: ["Psychological disturbance", "Environmental factors", "Organic factors", "Developmental factors"],
+    a: 2
+  },
+
+  // Part 2: True or False (Q71 - Q100)
+  {
+    t: "The average annual weight gain during preschool years is 6.25–7.5 kg, while height increases by 2.3 cm annually.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "The average 6-year-old child weighs 18 kg and is approximately 101 cm tall according to the lecture.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The preschool child's normal respiratory rate is approximately 20 cycles per minute, and the pulse rate is 90–110 beats per minute.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Physical growth accelerates during preschool years, and the child usually becomes shorter and heavier by the end of this period.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Fine motor skills involve smaller muscles, particularly those of the fingers and hands, and support school readiness.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Catching a ball, hopping, and pedaling a bicycle are examples of fine motor skills.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "A 3-year-old child may build a tower of 9–10 blocks, begin using scissors, and ride a tricycle.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Copying a square and lacing shoes are skills specifically mentioned for a 5-year-old child.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "A 5-year-old child can balance on one foot for approximately 8 seconds and use scissors well.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Piaget's preoperational phase extends from 2 to 7 years and includes the pre-conceptual and intuitive thought phases.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The pre-conceptual phase occurs between 4 and 7 years, while intuitive thought occurs between 2 and 4 years.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Preschool children gradually develop social awareness and consider other viewpoints, although egocentrism remains evident.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Preschool children always understand the meaning of concepts such as right, left, causality, and time whenever they use these words.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "A preschool child may explain a concept using words learned from others while having limited understanding of that concept.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Preschoolers overcome much of their anxiety toward strangers and can tolerate brief separation from parents with little or no protest.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Preschool children no longer require parental security, reassurance, guidance, or approval once they overcome separation anxiety.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Vocabulary increases from approximately 300 words at age 2 to more than 2,100 words by the end of age 5.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "A 3-year-old generally forms sentences of four or five words, while a 4–5-year-old uses only three to four words.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "A 3-year-old may ask many questions, use plurals, correct pronouns, and past tense verbs.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Children aged 4–5 years can follow simple directional commands but may carry out only one request at a time.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "According to Freud, the phallic stage extends from 3 to 7 years, and the child's pleasure centers on the genitalia.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The Oedipal conflict is characterized by love toward the same-sex parent and jealousy toward the opposite-sex parent.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "The Oedipal conflict typically resolves in the late preschool period through strong identification with the same-sex parent.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Preschool children are considered keen observers and good interpreters of sexual activity.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "According to Erikson, initiative versus guilt is the psychosocial crisis of children between 3 and 6 years.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "The preschool child normally moves from initiative toward autonomy after mastering toddlerhood tasks.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Commands are generally more effective when presented positively rather than negatively, and suggestions are preferred for guiding children.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Thumb-suckling may indicate that a child feels unloved or insecure, and adults should provide more love and security.",
+    o: ["True", "False"],
+    a: 0
+  },
+  {
+    t: "Enuresis refers to involuntary stool passage, whereas encopresis refers to repeated involuntary urine passage.",
+    o: ["True", "False"],
+    a: 1
+  },
+  {
+    t: "Nursery school preparation includes helping the child become familiar with the school environment, meeting the teacher, bringing a familiar toy if desired, and assuring the child that the mother will return.",
+    o: ["True", "False"],
+    a: 0
+  }
+];
+/* =====================================================
+   ENGINE
+===================================================== */
+
+let questions=[];
+let current=0;
+let correct=0;
+let wrong=0;
+let answered=0;
+
+let answers=[];
+let wrongSet=[];
+
+let totalTime=60*60;
+let timeLeft=totalTime;
+let timerInterval=null;
+
+let studentName="";
+let studentCode="";
+
+// تثبيت نتيجة الامتحان الأصلي وفصل مراجعة الأخطاء
+let reviewMode = false;
+let originalResult = null;
+
+const LETTERS=["A","B","C","D","E","F"];
+
+
+/* SHUFFLE */
+
+function shuffle(array){
+
+  const arr=[...array];
+
+  for(let x=arr.length-1;x>0;x--){
+
+    const y=Math.floor(Math.random()*(x+1));
+
+    [arr[x],arr[y]]=[arr[y],arr[x]];
+
+  }
+
+  return arr;
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* INIT */
+
+function init(pool, isReview = false){
+
+  clearInterval(timerInterval);
+
+  // المراجعة منفصلة عن الامتحان الأصلي
+  if(!isReview){
+    reviewMode = false;
+    originalResult = null;
+  }else{
+    reviewMode = true;
+  }
+
+  questions=shuffle(pool);
+
+  current=0;
+  correct=0;
+  wrong=0;
+  answered=0;
+
+  answers=new Array(questions.length).fill(null);
+  wrongSet=[];
+
+  timeLeft=totalTime;
+
+  document.getElementById("totalBadge").textContent=
+    questions.length+" سؤال";
+
+  startTimer();
+
+  render();
+
+}
+
+/* TIMER */
+
+function startTimer(){
+
+  clearInterval(timerInterval);
+
+  updateTimer();
+
+  timerInterval=setInterval(()=>{
+
+    timeLeft--;
+
+    updateTimer();
+
+    if(timeLeft<=0){
+
+      clearInterval(timerInterval);
+
+      finish();
+
+    }
+
+  },1000);
+
+}
+
+
+function updateTimer(){
+
+  const min=Math.floor(timeLeft/60);
+
+  const sec=timeLeft%60;
+
+  const timer=document.getElementById("timerTxt");
+
+  const badge=document.getElementById("timerBadge");
+
+  timer.textContent=
+    `${min}:${sec<10?"0":""}${sec}`;
+
+  badge.className="timer-badge";
+
+  if(timeLeft<=120){
+
+    badge.classList.add("danger");
+
+  }else if(timeLeft<=300){
+
+    badge.classList.add("warn");
+
+  }
+
+}
+
+
+/* TOP */
+
+function updateTop(){
+
+  const total=questions.length;
+
+  document.getElementById("sCorrect").textContent=correct;
+
+  document.getElementById("sWrong").textContent=wrong;
+
+  const remaining=total-answered;
+
+  document.getElementById("sRemain").textContent=
+    Math.round((remaining/total)*100)+"%";
+
+  document.getElementById("progLabel").textContent=
+    "سؤال "+(current+1)+" / "+total;
+
+  const percent=((current+1)/total)*100;
+
+  document.getElementById("progFill").style.width=
+    percent+"%";
+
+  document.getElementById("prog-bar").style.width=
+    percent+"%";
+
+}
+
+
+/* RENDER */
+
+function render(){
+
+  updateTop();
+
+  const q=questions[current];
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="q-card">
+
+      <div class="q-header">
+
+        <div class="q-num">
+          سؤال ${current+1} / ${questions.length}
+        </div>
+
+      </div>
+
+
+      <div class="q-text">
+        ${escapeHTML(q.t)}
+      </div>
+
+
+      <div class="options">
+
+        ${q.o.map((option,index)=>`
+
+          <div
+            class="opt"
+            id="opt${index}"
+            onclick="choose(${index})"
+          >
+
+            <div class="opt-letter">
+              ${LETTERS[index] || index+1}
+            </div>
+
+            <div>
+              ${escapeHTML(option)}
+            </div>
+
+          </div>
+
+        `).join("")}
+
+      </div>
+
+
+      <div class="nav-btns">
+
+        <button
+          class="btn btn-skip"
+          type="button"
+          onclick="skip()"
+        >
+
+          <i class="fa-solid fa-forward"></i>
+
+          تخطي
+
+        </button>
+
+      </div>
+
+    </div>
+
+  `;
+
+}
+
+
+/* CHOOSE */
+
+function choose(answer){
+
+  if(answers[current]!==null){
+    return;
+  }
+
+  const q=questions[current];
+
+  answers[current]=answer;
+
+  answered++;
+
+  const isCorrect=
+    answer===q.a;
+
+  if(isCorrect){
+
+    correct++;
+
+  }else{
+
+    wrong++;
+
+  }
+
+  updateTop();
+
+
+  q.o.forEach((_,index)=>{
+
+    const option=
+      document.getElementById("opt"+index);
+
+    option.classList.add("disabled");
+
+    if(index===q.a){
+
+      option.classList.add("correct");
+
+    }
+
+    if(index===answer && answer!==q.a){
+
+      option.classList.add("wrong");
+
+    }
+
+  });
+
+
+  const card=
+    document.querySelector(".q-card");
+
+  const feedback=
+    document.createElement("div");
+
+  feedback.className=
+    "feedback-bar "+(isCorrect?"ok":"no");
+
+  feedback.innerHTML=isCorrect
+    ? `<span class="feedback-icon">🎉</span>
+       <span>إجابة صحيحة ✔</span>`
+    : `<span class="feedback-icon">😔</span>
+       <span>إجابة خاطئة ✖</span>`;
+
+  card
+    .querySelector(".options")
+    .after(feedback);
+
+
+  const nav=
+    card.querySelector(".nav-btns");
+
+  nav.innerHTML=`
+
+    <button
+      class="btn btn-next"
+      type="button"
+      onclick="next()"
+    >
+
+      ${
+        current<questions.length-1
+        ? '<i class="fa-solid fa-arrow-left"></i> السؤال التالي'
+        : '<i class="fa-solid fa-flag-checkered"></i> إنهاء الامتحان'
+      }
+
+    </button>
+
+  `;
+
+}
+
+
+/* SKIP */
+
+function skip(){
+
+  if(answers[current]!==null){
+    return;
+  }
+
+  answers[current]=-1;
+
+  answered++;
+
+  next();
+
+}
+
+
+/* NEXT */
+
+function next(){
+
+  if(current<questions.length-1){
+
+    current++;
+
+    render();
+
+    window.scrollTo({
+      top:0,
+      behavior:"smooth"
+    });
+
+  }else{
+
+    finish();
+
+  }
+
+}
+
+
+/* STUDENT FORM */
+
+function showStudentForm(){
+
+  clearInterval(timerInterval);
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+      <div style="
+        font-size:45px;
+        margin-bottom:12px;
+      ">
+        📝
+      </div>
+
+
+      <div class="result-grade">
+        بيانات الطالب
+      </div>
+
+
+      <div class="result-sub"
+        style="margin-bottom:22px;"
+      >
+        من فضلك اكتب اسمك وكود الكشف قبل عرض النتيجة
+      </div>
+
+
+      <div class="student-box">
+
+        <label class="student-label">
+          الاسم
+        </label>
+
+        <input
+          id="studentNameInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتب اسمك بالكامل"
+          autocomplete="name"
+        >
+
+      </div>
+
+
+      <div class="student-box">
+
+        <label class="student-label">
+          كود الكشف
+        </label>
+
+        <input
+          id="studentCodeInput"
+          class="student-input"
+          type="text"
+          placeholder="اكتب كود الكشف"
+        >
+
+      </div>
+
+
+      <div
+        id="studentError"
+        class="student-error"
+      >
+        من فضلك اكتب الاسم وكود الكشف
+      </div>
+
+
+      <button
+        class="btn btn-next"
+        type="button"
+        onclick="saveStudentInfo()"
+      >
+
+        ✅ تأكيد وعرض النتيجة
+
+      </button>
+
+    </div>
+
+  `;
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* SAVE STUDENT */
+
+function saveStudentInfo(){
+
+  const name=
+    document
+      .getElementById("studentNameInput")
+      .value
+      .trim();
+
+  const code=
+    document
+      .getElementById("studentCodeInput")
+      .value
+      .trim();
+
+  const error=
+    document.getElementById("studentError");
+
+  if(!name || !code){
+
+    error.style.display="block";
+
+    return;
+
+  }
+
+  studentName=name;
+  studentCode=code;
+
+  finish(true);
+
+}
+
+
+/* FINISH */
+
+function finish(showResult=false){
+
+  // عند انتهاء مراجعة الأخطاء، اعرض نتيجة التدريب فقط
+  if(reviewMode && !showResult){
+    clearInterval(timerInterval);
+    showReviewResult();
+    return;
+  }
+
+  if(!showResult){
+    showStudentForm();
+    return;
+  }
+
+  // لا تسمح للمراجعة بتغيير الدرجة الأصلية
+  if(reviewMode){
+    showReviewResult();
+    return;
+  }
+
+  clearInterval(timerInterval);
+
+  const total=questions.length;
+
+  const score=
+    Math.round((correct/total)*100);
+
+
+  wrongSet=questions
+    .map((q,index)=>{
+
+      if(answers[index]!==q.a){
+
+        return {
+          ...q,
+          myAns:answers[index]
+        };
+
+      }
+
+      return null;
+
+    })
+    .filter(Boolean);
+
+
+  let grade;
+  let gradeColor;
+
+
+  if(score>=90){
+
+    grade="🥇 ممتاز";
+    gradeColor="var(--success)";
+
+  }else if(score>=75){
+
+    grade="🥈 جيد جداً";
+    gradeColor="var(--gold-light)";
+
+  }else if(score>=60){
+
+    grade="🥉 جيد";
+    gradeColor="var(--gold)";
+
+  }else{
+
+    grade="📚 راجع تاني";
+    gradeColor="var(--danger)";
+
+  }
+
+
+  const circumference=
+    2*Math.PI*45;
+
+  const offset=
+    circumference-(score/100)*circumference;
+
+
+  const reportHTML=
+    questions.map((q,index)=>{
+
+      const isCorrect=
+        answers[index]===q.a;
+
+      const yourAnswer=
+        answers[index]>=0
+        ? escapeHTML(q.o[answers[index]])
+        : "تم التخطي";
+
+
+      return `
+
+        <div class="report-item ${isCorrect?"ok":"no"}">
+
+          <div class="ri-q">
+
+            ${isCorrect?"✅":"❌"}
+
+            ${escapeHTML(q.t)}
+
+          </div>
+
+
+          ${
+            !isCorrect
+            ? `
+
+              <div class="ri-row">
+
+                <span class="ri-badge ri-yours">
+                  إجابتك
+                </span>
+
+                <span>
+                  ${yourAnswer}
+                </span>
+
+              </div>
+
+
+              <div class="ri-row">
+
+                <span class="ri-badge ri-right">
+                  الصحيح
+                </span>
+
+                <span>
+                  ${escapeHTML(q.o[q.a])}
+                </span>
+
+              </div>
+
+            `
+            :""
+          }
+
+        </div>
+
+      `;
+
+    }).join("");
+
+
+  document.getElementById("prog-bar").style.width="100%";
+
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+
+      <div style="
+        background:var(--bg2);
+        border:1px solid var(--border);
+        border-radius:12px;
+        padding:14px;
+        margin-bottom:20px;
+        text-align:right;
+      ">
+
+        <div style="
+          font-size:12px;
+          color:var(--text3);
+          margin-bottom:4px;
+        ">
+          اسم الطالب
+        </div>
+
+        <div style="
+          font-size:17px;
+          font-weight:900;
+          color:var(--text);
+          margin-bottom:12px;
+        ">
+          ${escapeHTML(studentName)}
+        </div>
+
+
+        <div style="
+          font-size:12px;
+          color:var(--text3);
+          margin-bottom:4px;
+        ">
+          كود الكشف
+        </div>
+
+        <div style="
+          font-size:16px;
+          font-weight:900;
+          color:var(--gold);
+        ">
+          ${escapeHTML(studentCode)}
+        </div>
+
+      </div>
+
+
+      <div class="score-ring">
+
+        <svg viewBox="0 0 110 110">
+
+          <circle
+            class="ring-bg"
+            cx="55"
+            cy="55"
+            r="45"
+          />
+
+          <circle
+            class="ring-fill"
+            cx="55"
+            cy="55"
+            r="45"
+            stroke="${gradeColor}"
+            stroke-dasharray="${circumference}"
+            stroke-dashoffset="${circumference}"
+            id="ringFill"
+          />
+
+        </svg>
+
+
+        <div class="score-num">
+          ${score}
+        </div>
+
+        <div class="score-pct">
+          %
+        </div>
+
+      </div>
+
+
+      <div
+        class="result-grade"
+        style="color:${gradeColor}"
+      >
+        ${grade}
+      </div>
+
+
+      <div class="result-sub">
+
+        أجبت على ${answered} من ${total} سؤال
+
+      </div>
+
+
+      <div class="result-stats">
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--success)"
+          >
+            ${correct}
+          </div>
+
+          <div class="l">
+            صحيح
+          </div>
+
+        </div>
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--danger)"
+          >
+            ${wrong}
+          </div>
+
+          <div class="l">
+            خطأ
+          </div>
+
+        </div>
+
+
+        <div class="rs">
+
+          <div
+            class="n"
+            style="color:var(--gold)"
+          >
+            ${total-answered}
+          </div>
+
+          <div class="l">
+            تخطي
+          </div>
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="result-actions">
+
+
+      ${
+        wrongSet.length
+        ? `
+
+          <button
+            class="btn btn-retry"
+            type="button"
+            onclick="retryWrong()"
+          >
+
+            <i class="fa-solid fa-rotate-right"></i>
+
+            إعادة الخطأ (${wrongSet.length})
+
+          </button>
+
+        `
+        :""
+      }
+
+
+      <button
+        class="btn btn-home"
+        type="button"
+        onclick="init(QUESTIONS)"
+      >
+
+        <i class="fa-solid fa-shuffle"></i>
+
+        امتحان جديد عشوائي
+
+      </button>
+
+
+      <a
+        href="../index.html"
+        class="btn btn-home"
+        style="text-decoration:none;"
+      >
+
+        <i class="fa-solid fa-house"></i>
+
+        رجوع للمادة
+
+      </a>
+
+
+    </div>
+
+
+    <div>
+
+      <div class="report-title">
+        📋 تقرير مفصّل
+      </div>
+
+      ${reportHTML}
+
+    </div>
+
+  `;
+
+  // حفظ نسخة ثابتة من النتيجة الرسمية قبل بدء أي مراجعة
+  originalResult = {
+    questions: questions.slice(),
+    answers: answers.slice(),
+    wrongSet: wrongSet.map(q=>({...q})),
+    correct: correct,
+    wrong: wrong,
+    answered: answered,
+    score: score,
+    resultHTML: document.getElementById("app").innerHTML,
+    studentName: studentName,
+    studentCode: studentCode
+  };
+
+  setTimeout(()=>{
+
+    const ring=
+      document.getElementById("ringFill");
+
+    if(ring){
+
+      ring.style.strokeDashoffset=
+        offset;
+
+    }
+
+  },100);
+
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* RETRY WRONG - مراجعة منفصلة */
+
+function retryWrong(){
+
+  if(!originalResult || !originalResult.wrongSet.length){
+    return;
+  }
+
+  const pool=originalResult.wrongSet.map(q=>({
+    t:q.t,
+    o:q.o,
+    a:q.a
+  }));
+
+  // بدء المراجعة دون تغيير الدرجة الأصلية
+  init(pool, true);
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+}
+
+
+/* REVIEW RESULT - نتيجة التدريب فقط */
+
+function showReviewResult(){
+
+  clearInterval(timerInterval);
+
+  const total=questions.length;
+  const reviewCorrect=correct;
+  const reviewWrong=wrong;
+  const reviewSkipped=total-answered;
+
+  document.getElementById("app").innerHTML=`
+
+    <div class="result-hero">
+
+      <div style="font-size:45px;margin-bottom:12px;">📚</div>
+
+      <div class="result-grade">انتهت مراجعة الأخطاء</div>
+
+      <div class="result-sub" style="margin-bottom:20px;">
+        دي نتيجة التدريب فقط، ودرجتك الأصلية لم تتغير.
+      </div>
+
+      <div class="result-stats">
+
+        <div class="rs">
+          <div class="n" style="color:var(--success)">${reviewCorrect}</div>
+          <div class="l">إجابة صحيحة في المراجعة</div>
+        </div>
+
+        <div class="rs">
+          <div class="n" style="color:var(--danger)">${reviewWrong}</div>
+          <div class="l">إجابة خاطئة في المراجعة</div>
+        </div>
+
+        <div class="rs">
+          <div class="n" style="color:var(--gold)">${reviewSkipped}</div>
+          <div class="l">لم تتم الإجابة</div>
+        </div>
+
+      </div>
+
+      <div style="
+        margin-top:22px;
+        padding:15px;
+        border:1px solid var(--border);
+        border-radius:12px;
+        background:var(--bg2);
+      ">
+        <div style="color:var(--text2);font-size:13px;margin-bottom:6px;">
+          درجتك الرسمية في الامتحان الأصلي
+        </div>
+        <div style="font-size:32px;font-weight:900;color:var(--gold);">
+          ${originalResult ? originalResult.score : 0}%
+        </div>
+        <div style="color:var(--success);font-size:12px;margin-top:5px;">
+          🔒 الدرجة الأصلية ثابتة
+        </div>
+      </div>
+
+      <div class="result-actions">
+
+        <button class="btn btn-retry" type="button" onclick="showOriginalResult()">
+          <i class="fa-solid fa-arrow-right"></i>
+          العودة إلى النتيجة الأصلية
+        </button>
+
+        <button class="btn btn-home" type="button" onclick="init(QUESTIONS)">
+          <i class="fa-solid fa-shuffle"></i>
+          امتحان جديد
+        </button>
+
+      </div>
+
+    </div>
+  `;
+
+  document.getElementById("prog-bar").style.width="100%";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+
+/* RESTORE ORIGINAL RESULT */
+
+function showOriginalResult(){
+
+  if(!originalResult){
+    return;
+  }
+
+  clearInterval(timerInterval);
+
+  questions=originalResult.questions.slice();
+  answers=originalResult.answers.slice();
+  wrongSet=originalResult.wrongSet.map(q=>({...q}));
+
+  correct=originalResult.correct;
+  wrong=originalResult.wrong;
+  answered=originalResult.answered;
+
+  studentName=originalResult.studentName;
+  studentCode=originalResult.studentCode;
+
+  current=Math.max(0, questions.length-1);
+  reviewMode=false;
+
+  document.getElementById("app").innerHTML=originalResult.resultHTML;
+
+  updateTop();
+  document.getElementById("prog-bar").style.width="100%";
+
+  const ring=document.getElementById("ringFill");
+
+  if(ring){
+    const circumference=2*Math.PI*45;
+    const offset=circumference-(originalResult.score/100)*circumference;
+
+    ring.style.strokeDashoffset=circumference;
+
+    setTimeout(()=>{
+      const currentRing=document.getElementById("ringFill");
+      if(currentRing){
+        currentRing.style.strokeDashoffset=offset;
+      }
+    },100);
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+}
+
+/* THEME */
+
+const themeBtn=
+  document.getElementById("themeBtn");
+
+let theme=
+  localStorage.getItem("theme") || "dark";
+
+
+function applyTheme(value){
+
+  theme=value;
+
+  document.documentElement.setAttribute(
+    "data-theme",
+    value==="dark" ? "dark" : ""
+  );
+
+  if(themeBtn){
+
+    themeBtn.textContent=
+      value==="dark" ? "☀️" : "🌙";
+
+  }
+
+  localStorage.setItem(
+    "theme",
+    value
+  );
+
+}
+
+
+applyTheme(theme);
+
+
+if(themeBtn){
+
+  themeBtn.addEventListener(
+    "click",
+    ()=>{
+
+      applyTheme(
+        theme==="dark"
+        ? "light"
+        : "dark"
+      );
+
+    }
+  );
+
+}
+
+
+/* START */
+
+init(QUESTIONS);
+
+</script>
+<div style="
+  max-width:650px;
+  margin:35px auto;
+  padding:0 20px;
+  text-align:center;
+  direction:rtl;
+">
+
+  <div style="
+    color:#d4af37;
+    font-size:20px;
+    font-weight:800;
+    margin-bottom:18px;
+  ">
+    ✦ تواصل معنا ✦
+  </div>
+
+  <div style="
+    display:flex;
+    gap:12px;
+    justify-content:center;
+    flex-wrap:wrap;
+  ">
+
+    <a href="https://wa.me/201010306545"
+       target="_blank"
+       style="
+         display:flex;
+         align-items:center;
+         gap:10px;
+         padding:14px 20px;
+         border:1px solid #d4af37;
+         border-radius:14px;
+         background:#111;
+         color:#d4af37;
+         text-decoration:none;
+         font-weight:700;
+         font-family:Arial,sans-serif;
+       ">
+      🟢 تواصل معنا على واتساب
+    </a>
+
+    <a href="https://chat.whatsapp.com/JR7eCQQn9HLGoCYUfA1NNF?mode=gi_t"
+       target="_blank"
+       style="
+         display:flex;
+         align-items:center;
+         gap:10px;
+         padding:14px 20px;
+         border:1px solid #d4af37;
+         border-radius:14px;
+         background:#111;
+         color:#d4af37;
+         text-decoration:none;
+         font-weight:700;
+         font-family:Arial,sans-serif;
+       ">
+      🟢 انضم إلى جروب الواتساب
+    </a>
+
+  </div>
+</div>
+</body>
+</html>
